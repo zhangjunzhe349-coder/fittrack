@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page-node-id="4irdvoLuPIJQuC3jr14vYs">
-<head data-page-node-id="nqA4xsqQF2yRk1eHjlhoCn">
-<meta charset="UTF-8" data-page-node-id="5bzGWXOOwgNEyO5QKfINVg">
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
 <meta name="theme-color" content="#0b0d10">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="5owHcG4sBt9WFJQ8AObPMu">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FitTrack</title>
 <style>
 :root{
@@ -202,124 +202,126 @@ input,select,textarea{font-family:inherit}
 .srow .btn-s{background:var(--card2);border:1px solid var(--line);color:var(--tx2);border-radius:10px;padding:8px 14px;font-size:12px}
 </style>
 </head>
-<body data-page-node-id="9gOU1NEBXYkJ4EkUdfcfQd">
+<body>
 
-<div class="wrap" data-page-node-id="WH7jXxxNSVNPOljVFNlyCg">
-  <div class="hd" data-page-node-id="nTQbpQn3LRayDdD6GYfet5">
-    <div data-page-node-id="yxtxDytyLFLJMg9aDSMURj"><h1 data-page-node-id="BXBSz9ZbLBvdf7jR0mWF83">FitTrack</h1><div class="date" id="hdDate" data-page-node-id="TMD13CIA2oC2ggnzzVFvQn"></div></div>
-    <button class="gear" onclick="openSettings()" data-page-node-id="zr9CFJTNiHR99jaMrSYRf9">⚙️</button>
+<div class="wrap">
+  <div class="hd">
+    <div><h1>FitTrack</h1><div class="date" id="hdDate"></div></div>
+    <button class="gear" onclick="openSettings()">⚙️</button>
   </div>
-  <div class="strip" id="strip" data-page-node-id="hhAapGhWRh24U9Xjexk7jH"></div>
+  <div class="strip" id="strip"></div>
 
   <!-- ===== 饮食页 ===== -->
-  <div id="pg-diet" data-page-node-id="nM9dMiYsMJaiWfyZtE8WR3">
-    <div class="hero" data-page-node-id="fPusHoFQsm2QX9wpSdc3EG">
-      <div class="ring" data-page-node-id="dPpJPqWqDWADNlEY39krjn">
-        <svg width="128" height="128" viewBox="0 0 128 128" data-page-node-id="XiyeXQJTe0diQrEP1h1hjP">
-          <circle cx="64" cy="64" r="54" fill="none" stroke="#1e222a" stroke-width="10" data-page-node-id="PmHf3hFbZldnIPDjopWPE4"/>
-          <circle id="ringFg" cx="64" cy="64" r="54" fill="none" stroke="var(--lime)" stroke-width="10" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3" data-page-node-id="kWBDa1J8xXIEkBw9T1rmtA"/>
+  <div id="pg-diet">
+    <div class="hero">
+      <div class="ring">
+        <svg width="128" height="128" viewBox="0 0 128 128">
+          <circle cx="64" cy="64" r="54" fill="none" stroke="#1e222a" stroke-width="10"/>
+          <circle id="ringFg" cx="64" cy="64" r="54" fill="none" stroke="var(--lime)" stroke-width="10" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"/>
         </svg>
-        <div class="rn" data-page-node-id="ATETMtBGpk3dFWsDarWNcV"><b id="ringNum" data-page-node-id="nO4vchVBvysO4VyxesV0LQ">0</b><span id="ringLbl" data-page-node-id="SzWfSR1kmNuSuGvmPN3VWh">剩余大卡</span></div>
+        <div class="rn"><b id="ringNum">0</b><span id="ringLbl">剩余大卡</span></div>
       </div>
-      <div class="ml" id="macroBars" data-page-node-id="YdmYrYViEmZrvDhuddpMi6"></div>
-      <div class="hintline" id="heroHint" data-page-node-id="7O6SlV2mzyDqC4k0a0EdHT"></div>
+      <div class="ml" id="macroBars"></div>
+      <div class="hintline" id="heroHint"></div>
     </div>
 
-    <div class="st" data-page-node-id="YBViLy4bdcaJqruBZMBbwj"><h2 data-page-node-id="MqrZpq8c0xNlbq6j2DeOp7">三餐</h2><span class="sub" data-page-node-id="OI6os9gSi1VRddAaE0AMYE">每餐随时可记 · 点 ＋ 添加</span></div>
-    <div id="meals" data-page-node-id="SLgUDm8yw3g7CC4eWGQ1ib"></div>
+    <div class="st"><h2>三餐</h2><span class="sub">每餐随时可记 · 点 ＋ 添加</span></div>
+    <div id="meals"></div>
 
-    <div class="st" data-page-node-id="b52BplHB3fCng0Y33v305Z"><h2 data-page-node-id="TDDE7f9REqDejbZ9COL6dD">执行项</h2><span class="sub" data-page-node-id="UH6bDI9vlTlUocHesJ7XJZ">点开打卡</span></div>
-    <div class="fold" id="foldSup" data-page-node-id="JCIobgvGpHPwIvy9rbnuUK">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="IIrFYq1dzGiIB7DpyQ16CX"><h3 data-page-node-id="OiZjVMzCTOpmGFQszb145N">💊 补剂</h3><span class="badge" id="supBadge" data-page-node-id="dPQhHRqtjkgGNXgaa9NgdR"></span></div>
-      <div class="body" id="supList" data-page-node-id="rQpUMKacbRYXbY6vS7s7tn"></div>
+    <div class="st"><h2>执行项</h2><span class="sub">点开打卡</span></div>
+    <div class="fold" id="foldSup">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>💊 补剂</h3><span class="badge" id="supBadge"></span></div>
+      <div class="body" id="supList"></div>
     </div>
-    <div class="fold" id="foldWater" data-page-node-id="uXhcFO7ZAziFAWKFlBo5d5">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="rcLfD7aadjEU097ofJ22ta"><h3 data-page-node-id="xFGD2oVk4eWMqbXJQI0slh">💧 喝水</h3><span class="badge" id="waterBadge" data-page-node-id="AAfDEuabUUeyFbSkT7z3uO"></span></div>
-      <div class="body" data-page-node-id="R3tUvTiODB6Vm4Qjn3yA1i">
-        <div class="water" data-page-node-id="cZt0DsLyllRBagV6kdHpbC"><span class="num" id="waterNum" data-page-node-id="sPHIRjHFteXT75cBf0yYwD">0ml</span><div class="bar" data-page-node-id="T4mLHEThmiOhwz8q3vHZHx"><i id="waterBar" style="width:0%" data-page-node-id="9MR6yvOGjfJqcbQTUmK2um"></i></div></div>
-        <div class="wbtns" data-page-node-id="gmsQYARSsuCGvmhn5m3Px4"><button class="wbtn" onclick="addWater(250)" data-page-node-id="rIHf3NZZX1tWkNGWpaHEqF">+250ml</button><button class="wbtn" onclick="addWater(500)" data-page-node-id="bl1iPmcRZhSMExJkrg98q3">+500ml</button><button class="wbtn" onclick="addWater(-250)" data-page-node-id="XnLB5uiCXJHdKdBMeLHQra">−250ml</button></div>
+    <div class="fold" id="foldWater">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>💧 喝水</h3><span class="badge" id="waterBadge"></span></div>
+      <div class="body">
+        <div class="water"><span class="num" id="waterNum">0ml</span><div class="bar"><i id="waterBar" style="width:0%"></i></div></div>
+        <div class="wbtns"><button class="wbtn" onclick="addWater(250)">+250ml</button><button class="wbtn" onclick="addWater(500)">+500ml</button><button class="wbtn" onclick="addWater(-250)">−250ml</button></div>
       </div>
     </div>
-    <div class="fold" id="foldBed" data-page-node-id="0t5hwc7OX9mlN12d3YzhcQ">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="YQi6564VUjJCSBXS7YrQF9"><h3 data-page-node-id="vmChlMIhAGk16FJ0SUlr5T">🌙 睡前自检</h3><span class="badge" id="bedBadge" data-page-node-id="A8CGxkqFVbKIEcqbySxdD8"></span></div>
-      <div class="body" id="bedList" data-page-node-id="bdb9wwZoklOoUsYV1o9QFy"></div>
+    <div class="fold" id="foldBed">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🌙 睡前自检</h3><span class="badge" id="bedBadge"></span></div>
+      <div class="body" id="bedList"></div>
     </div>
 
-    <div class="st" data-page-node-id="DbSC5GW0Swy3uTir85A1Bj"><h2 data-page-node-id="SSIcTl9qh0c2TCtJpKc0ik">数据</h2><span class="sub" data-page-node-id="rYIpQRbt7cTXJ4CNvXgLLn">纯数据 JSON 导出</span></div>
-    <div class="wbtns" style="margin-bottom:16px" data-page-node-id="xuKdxtZCpLKm8tgLPVmLyF">
-      <button class="wbtn" onclick="exportRange('week')" data-page-node-id="4rdfI3v7zTudt0JRB6QxyB">⬇ 导出本周</button>
-      <button class="wbtn" onclick="exportRange('month')" data-page-node-id="iQve6Tm36TCLPihfWq4wvU">⬇ 导出本月</button>
+    <div class="st"><h2>数据</h2><span class="sub">纯数据 JSON 导出</span></div>
+    <div class="wbtns" style="margin-bottom:16px">
+      <button class="wbtn" onclick="exportRange('week')">⬇ 导出本周</button>
+      <button class="wbtn" onclick="exportRange('month')">⬇ 导出本月</button>
     </div>
   </div>
 
   <!-- ===== 训练页 ===== -->
-  <div id="pg-train" style="display:none" data-page-node-id="dV39Y8WUy6b2WB3n4fALFa">
-    <div class="tcard" id="trainCard" data-page-node-id="Dgx8HzYYFkSXXCEGbUCLnb"></div>
-    <div id="sessArea" data-page-node-id="VbLbNaxCvtoRQtnk9IV5j9"></div>
-    <div class="st" data-page-node-id="GSp4Mt5iIr0S6qRBiLz34H"><h2 data-page-node-id="g4COdK3QzNU5Ui1TyMmCUd">排班与模板</h2><span class="sub" data-page-node-id="Y1j9qOHb0H9rKJo2oXCenb">完全自定义</span></div>
-    <div class="fold" data-page-node-id="dhwHgBvAv2pzcTUpcPN7ck">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="WVn0Ldusk8hQ6TTdPNn8De"><h3 data-page-node-id="uJPtp9ie6SJW0fdb9vJiYl">📅 一周排班</h3><span class="badge" data-page-node-id="fEYkcEwLLEIip1L0ypwmXV">练A / 练B / 休息</span></div>
-      <div class="body" id="schedBody" data-page-node-id="z3ShiDDieOd3fEEyTbAXkB"></div>
+  <div id="pg-train" style="display:none">
+    <div class="tcard" id="trainCard"></div>
+    <div id="sessArea"></div>
+    <div class="st"><h2>排班与模板</h2><span class="sub">完全自定义</span></div>
+    <div class="fold">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>📅 一周排班</h3><span class="badge">练A / 练B / 休息</span></div>
+      <div class="body" id="schedBody"></div>
     </div>
-    <div class="fold" data-page-node-id="gGjg0d20mxniNevpXhpiEl">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="9WG78ui4kvcuhDvcHSJfnN"><h3 data-page-node-id="DYRdmlY3PuxQ4gSzwVENnR">🧩 模板 练A</h3><span class="badge" id="taCnt" data-page-node-id="oYDJxH0Orc1Ch1cfK0CDLh"></span></div>
-      <div class="body" id="tmplA" data-page-node-id="YaFVcRLCKfOG8gfPba7D57"></div>
+    <div class="fold">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🧩 模板 练A</h3><span class="badge" id="taCnt"></span></div>
+      <div class="body" id="tmplA"></div>
     </div>
-    <div class="fold" data-page-node-id="v224e24mB1Zov2qmzMKhrG">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')" data-page-node-id="sc40Eb4ALZ0XWb4AG6O6om"><h3 data-page-node-id="XtlQdB1RsDozKxHIw09dkO">🧩 模板 练B</h3><span class="badge" id="tbCnt" data-page-node-id="zrHHzXCaF7ZuHMgUnFceH0"></span></div>
-      <div class="body" id="tmplB" data-page-node-id="w6Aq2jXCL6yRniFR5v5KoI"></div>
+    <div class="fold">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🧩 模板 练B</h3><span class="badge" id="tbCnt"></span></div>
+      <div class="body" id="tmplB"></div>
     </div>
 
-    <div class="st" data-page-node-id="A7LF8yoD8J69rNHnPvdxE2"><h2 data-page-node-id="0K8r1Z8ePxg62jTlc5wq9E">数据</h2><span class="sub" data-page-node-id="qjW10MJT6V18ktFWOhGYBP">纯数据 JSON 导出</span></div>
-    <div class="wbtns" style="margin-bottom:16px" data-page-node-id="NUgG9iagV0C6NS0Ug7TDHO">
-      <button class="wbtn" onclick="exportRange('week')" data-page-node-id="wDzv8fXmqJU5DetPdvmOAF">⬇ 导出本周</button>
-      <button class="wbtn" onclick="exportRange('month')" data-page-node-id="HPOTDC0oYTq1Z1JSjS39wG">⬇ 导出本月</button>
+    <div class="st"><h2>数据</h2><span class="sub">纯数据 JSON 导出</span></div>
+    <div class="wbtns" style="margin-bottom:16px">
+      <button class="wbtn" onclick="exportRange('week')">⬇ 导出本周</button>
+      <button class="wbtn" onclick="exportRange('month')">⬇ 导出本月</button>
     </div>
   </div>
 </div>
 
-<div class="nav" data-page-node-id="uH9FIhdQF87U6BleXG7GHn">
-  <button class="tab on" id="nv-diet" onclick="go('diet')" data-page-node-id="zzY09PaojV8yCH7XWnuPA3"><span class="ic" data-page-node-id="y3V86DSvRE4u7GtEUI9oLY">🍽️</span>饮食</button>
-  <button class="fab" onclick="openLog()" data-page-node-id="S71Gf8Vcg3cQkck5GCojzb">＋</button>
-  <button class="tab" id="nv-train" onclick="go('train')" data-page-node-id="cBkNyDJK8C8WQN4DCBA8EV"><span class="ic" data-page-node-id="eQOPJrRzGH3GHDb7CovvHj">🏋️</span>训练</button>
+<div class="nav">
+  <button class="tab on" id="nv-diet" onclick="go('diet')"><span class="ic">🍽️</span>饮食</button>
+  <button class="fab" onclick="openLog()">＋</button>
+  <button class="tab" id="nv-train" onclick="go('train')"><span class="ic">🏋️</span>训练</button>
 </div>
 
-<div class="mask" id="mask" onclick="closeAll()" data-page-node-id="lodlMid0ojlzB88Jt2Yl3I"></div>
+<div class="mask" id="mask" onclick="closeAll()"></div>
 
 <!-- 记录 bottom sheet -->
-<div class="sheet" id="logSheet" data-page-node-id="BnsA0gEoBUxGF0GaVCxeMY">
-  <div class="grab" data-page-node-id="SveyT1LigdFdl1uKBxQXE3"></div>
-  <h3 data-page-node-id="KP74p31dpI9uzfY9rI017c">记录一餐</h3>
-  <div class="mealpick" id="mealPick" data-page-node-id="9fRfCziy5039DnVFeEXOSW"></div>
-  <div class="srctabs" data-page-node-id="CHCCH6ltdEs5ZH6KiSuoAZ">
-    <button id="st-qa" class="on" onclick="setSrc('qa')" data-page-node-id="VUzWl66WwyeGVmqPRK1jKi">⚡ 快速添加</button>
-    <button id="st-ai" onclick="setSrc('ai')" data-page-node-id="noWnXgFtuAk0iCIwOvlEK5">🤖 AI 结果粘贴</button>
-    <button id="st-fr" onclick="setSrc('fr')" data-page-node-id="9z9Aj6oE5WeM4rTrpRlVkY">🔁 常吃</button>
+<div class="sheet" id="logSheet">
+  <div class="grab"></div>
+  <h3>记录一餐</h3>
+  <div class="mealpick" id="mealPick"></div>
+  <div class="srctabs">
+    <button id="st-qa" class="on" onclick="setSrc('qa')">⚡ 快速添加</button>
+    <button id="st-ai" onclick="setSrc('ai')">🤖 AI 结果粘贴</button>
+    <button id="st-fr" onclick="setSrc('fr')">🔁 常吃</button>
   </div>
-  <div id="srcBody" data-page-node-id="J1NxUBgxTKAkFWycBBnhWN"></div>
+  <div id="srcBody"></div>
 </div>
 
 <!-- AI 确认屏 -->
-<div class="sheet" id="cfmSheet" data-page-node-id="FcGSzslCrHHpSJiTKsGdAc">
-  <div class="grab" data-page-node-id="o7gTKWYX8OhhGBAy0wmQ3k"></div>
-  <h3 data-page-node-id="JsIxeXf8zmxvyHOJloHBHa">确认后入库 <span style="font-size:11px;color:var(--tx3);font-weight:400" data-page-node-id="pmGBBBOTC81PczyHSMS9QX">（AI 估算必须过确认，可改）</span></h3>
-  <div class="cfm" id="cfmList" data-page-node-id="N3HCFVaZLhDfXuTwAzWRJP"></div>
-  <button class="bigbtn" onclick="saveConfirm()" data-page-node-id="lG1BG2zxk9JDCCc42ldpoW">✓ 确认保存</button>
-  <button class="ghostbtn" onclick="backToPaste()" data-page-node-id="8418lW8MCcDxmDUOMZUAa8">← 返回修改</button>
+<div class="sheet" id="cfmSheet">
+  <div class="grab"></div>
+  <h3>确认后入库 <span style="font-size:11px;color:var(--tx3);font-weight:400">（AI 估算必须过确认，可改）</span></h3>
+  <div class="cfm" id="cfmList"></div>
+  <button class="bigbtn" onclick="saveConfirm()">✓ 确认保存</button>
+  <button class="ghostbtn" onclick="backToPaste()">← 返回修改</button>
 </div>
 
 <!-- 设置 sheet -->
-<div class="sheet" id="setSheet" data-page-node-id="0lnsQ4s3Jyg7DOkspoYWEY">
-  <div class="grab" data-page-node-id="c4uXNanG5ubRqeN3OpeEHb"></div>
-  <h3 data-page-node-id="WMkmSYuKYkiUapXuGccHVZ">设置</h3>
-  <div class="srow" data-page-node-id="hcVkTUZ1EXc4ywWu4upoSf"><span data-page-node-id="ClHnn73bwMILVKb1Mo7S2M">数据备份（导出 JSON）</span><button class="btn-s" onclick="exportData()" data-page-node-id="MkRzhnJ83I2DurOLxRHSc5">导出</button></div>
-  <div class="srow" data-page-node-id="DV3VxxNTDFgg43oJlxIgxP"><span data-page-node-id="A5HxD9UATbLBtClQuggcZW">恢复备份</span><button class="btn-s" onclick="document.getElementById('impFile').click()" data-page-node-id="Q2eMzt90Uy7t7nEyTgpNsn">导入</button></div>
-  <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(this)" data-page-node-id="a7QUutT2gSYs766UYKzLjJ">
-  <div class="srow" style="font-size:11px;color:var(--tx3)" data-page-node-id="71SEJn5J2TEL0dV6FV5QCm">目标：70kg · 蛋白140g · 碳水315g · 脂肪63g · 2450kcal · 纤维25g · 水2L</div>
+<div class="sheet" id="setSheet">
+  <div class="grab"></div>
+  <h3>设置</h3>
+  <div class="srow"><span>检查更新（APK 安装包）</span><button class="btn-s" id="updBtn" onclick="checkUpdate()">检查</button></div>
+  <div class="srow" style="font-size:11px;color:var(--tx3)"><span>当前版本 <b id="appVer"></b></span><span id="updStatus"></span></div>
+  <div class="srow"><span>数据备份（导出 JSON）</span><button class="btn-s" onclick="exportData()">导出</button></div>
+  <div class="srow"><span>恢复备份</span><button class="btn-s" onclick="document.getElementById('impFile').click()">导入</button></div>
+  <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(this)">
+  <div class="srow" style="font-size:11px;color:var(--tx3)">目标：70kg · 蛋白140g · 碳水315g · 脂肪63g · 2450kcal · 纤维25g · 水2L</div>
 </div>
 
-<div class="restchip" id="restChip" data-page-node-id="lGZAu6Hri8damxe2MVsIho"></div>
-<div class="toast" id="toast" data-page-node-id="8dQ9HRir7O04CyssMwinVf"></div>
+<div class="restchip" id="restChip"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 // ============ 常量 ============
@@ -656,7 +658,47 @@ function addFrequent(i){ const x=freqFoods()[i]; pushEntry(logMeal,{food:x.food,
 function show(id){ document.getElementById('mask').classList.add('show'); document.getElementById(id).classList.add('show'); }
 function closeAllSheetsOnly(){ document.querySelectorAll('.sheet').forEach(s=>s.classList.remove('show')); }
 function closeAll(){ closeAllSheetsOnly(); document.getElementById('mask').classList.remove('show'); }
-function openSettings(){ show('setSheet'); }
+function openSettings(){
+  document.getElementById('appVer').textContent = APP_VERSION;
+  show('setSheet');
+}
+// ---- 检查更新：读 version.json 比对版本号，有新版则提供 APK 下载 ----
+const APP_VERSION = '2.4.2';
+const UPDATE_BASE = location.pathname.replace(/[^/]*$/, ''); // 站内相对路径
+function verKey(v){ return v.split('.').map(n=>+n||0); }
+function isNewer(a,b){ const x=verKey(a),y=verKey(b); for(let i=0;i<Math.max(x.length,y.length);i++){ if((y[i]||0)>(x[i]||0)) return true; if((y[i]||0)<(x[i]||0)) return false; } return false; }
+let pendingApk=null;
+async function checkUpdate(){
+  const btn=document.getElementById('updBtn'), st=document.getElementById('updStatus');
+  btn.textContent='检查中…'; st.textContent='';
+  try{
+    const res = await fetch(UPDATE_BASE+'version.json?t='+Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error(res.status);
+    const info = await res.json();
+    if(isNewer(APP_VERSION, info.version)){
+      pendingApk = info.apk && !/^https?:/.test(info.apk) ? UPDATE_BASE+info.apk : info.apk;
+      st.textContent = `发现新版 v${info.version}`;
+      btn.textContent='⬇ 下载新版';
+      btn.onclick = downloadUpdate;
+      toast(`发现新版 v${info.version}`);
+    } else {
+      st.textContent = '已是最新';
+      btn.textContent='检查';
+      toast('✓ 已是最新版本');
+    }
+  }catch(e){
+    st.textContent = '检查失败（需联网）';
+    btn.textContent='检查';
+    toast('检查失败，稍后再试');
+  }
+}
+function downloadUpdate(){
+  if(!pendingApk){ toast('先点「检查」'); return; }
+  // 触发 APK 下载：浏览器环境直接下载；TWA 内则跳系统浏览器下载页
+  const a=document.createElement('a'); a.href=pendingApk; a.download='fittrack.apk';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('开始下载新版 APK，装完覆盖安装即可');
+}
 function exportData(){
   const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='fittrack-'+todayKey()+'.json'; a.click(); toast('已导出');
