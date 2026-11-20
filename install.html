@@ -32,7 +32,8 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
 <div class="sub">健身记录 · 饮食达标判定 + 二分化训练</div>
 
 <a class="btn btn-main" id="dlBtn" href="fittrack.apk" download="fittrack.apk">⬇ 下载 Android 安装包（APK）</a>
-<div class="hint">当前版本 v2.4.2 · 约 409 KB</div>
+<div class="hint" id="verHint">当前版本 v2.5.0 · 内置浏览器内核，不依赖 Chrome</div>
+<div class="hint"><a href="https://github.com/zhangjunzhe349-coder/fittrack/releases/latest/download/fittrack.apk" style="color:var(--tx2);text-decoration:underline">下载不下来？走备用通道（GitHub 直链）</a></div>
 
 <div class="warn" id="err">⚠️ 检测到你可能在<b>微信/QQ 内置浏览器</b>中打开 —— 它们会拦截 APK 下载。<br>请点右上角「···」选择<b>在浏览器中打开</b>（系统浏览器），再按下载。</div>
 
@@ -44,6 +45,10 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
     <li>系统提示「未知来源」→ 允许（仅首次）</li>
     <li>安装完成，桌面出现 <b>F 图标</b>，打开即全屏 App</li>
   </ol>
+</div>
+
+<div class="warn" style="background:rgba(255,107,107,.08);border-color:rgba(255,107,107,.35);color:#ff9b9b">
+  🔧 装过旧版（打开闪退/白屏）？那是旧包依赖 Chrome。这版已换成内置 WebView，直接覆盖安装即可；若提示「应用未安装」，先在设置里卸载旧版 FitTrack 再装。
 </div>
 
 <div class="card">
@@ -72,6 +77,17 @@ h1{font-size:20px;text-align:center;margin-bottom:4px}
 // 微信/QQ 内置浏览器拦截 APK 下载 → 显著提示
 const ua = navigator.userAgent;
 if (/MicroMessenger|QQ\/|Weibo/i.test(ua)) document.getElementById('err').style.display = 'block';
+
+// 版本信息动态读取，发新版不用改这个页面
+fetch('version.json', { cache: 'no-store' })
+  .then(r => r.json())
+  .then(v => {
+    if (!v || !v.version) return;
+    document.getElementById('verHint').textContent =
+      '当前版本 v' + v.version + ' · 内置浏览器内核，不依赖 Chrome';
+    document.getElementById('dlBtn').href = 'fittrack.apk?v=' + v.version;
+  })
+  .catch(() => {});
 </script>
 </body>
 </html>
