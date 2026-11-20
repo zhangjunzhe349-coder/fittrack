@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#0b0d10">
+<title>FitTrack · 下载安装</title>
+<style>
+:root{--bg:#0b0d10;--card:#14181d;--card2:#1a1f26;--line:#232a33;--tx:#e8ecf1;--tx2:#9aa5b1;--tx3:#5c6773;--lime:#c6f432;--amber:#ffb454}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;max-width:420px;margin:0 auto;padding:28px 18px 40px;min-height:100vh}
+.logo{width:72px;height:72px;border-radius:18px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:var(--lime);margin:0 auto 14px;position:relative}
+.logo::after{content:'';position:absolute;inset:8px;border-radius:12px;border:3px solid var(--lime);border-top-color:transparent;transform:rotate(-40deg);opacity:.85}
+h1{font-size:20px;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--tx3);font-size:12.5px;margin-bottom:22px}
+.btn{display:block;width:100%;padding:16px;border-radius:14px;border:none;font-size:16.5px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer}
+.btn-main{background:var(--lime);color:#0b0d10}
+.btn-main:active{opacity:.85}
+.hint{text-align:center;font-size:11.5px;color:var(--tx3);margin-top:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px}
+.card h2{font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.card ol{padding-left:18px;font-size:13px;color:var(--tx2);line-height:2}
+.card ol b{color:var(--tx)}
+.warn{background:rgba(255,180,84,.09);border:1px solid rgba(255,180,84,.35);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--amber);line-height:1.7;margin-top:16px}
+.meta{margin-top:20px;text-align:center;font-size:11px;color:var(--tx3);line-height:1.8}
+#err{display:none;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.4);border-radius:12px;padding:12px 14px;font-size:12.5px;color:#ff6b6b;margin-top:14px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="logo">F</div>
+<h1>FitTrack</h1>
+<div class="sub">健身记录 · 饮食达标判定 + 二分化训练</div>
+
+<a class="btn btn-main" id="dlBtn" href="fittrack.apk" download="fittrack.apk">⬇ 下载 Android 安装包（APK）</a>
+<div class="hint">当前版本 v2.4.2 · 约 409 KB</div>
+
+<div class="warn" id="err">⚠️ 检测到你可能在<b>微信/QQ 内置浏览器</b>中打开 —— 它们会拦截 APK 下载。<br>请点右上角「···」选择<b>在浏览器中打开</b>（系统浏览器），再按下载。</div>
+
+<div class="card">
+  <h2>📱 安装步骤（Android）</h2>
+  <ol>
+    <li>点上方按钮下载 APK</li>
+    <li>打开下载的 <b>fittrack.apk</b></li>
+    <li>系统提示「未知来源」→ 允许（仅首次）</li>
+    <li>安装完成，桌面出现 <b>F 图标</b>，打开即全屏 App</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>🍏 iPhone 用户</h2>
+  <ol>
+    <li>iOS 无法安装 APK，请用网页版</li>
+    <li>用 Safari 打开 <b>主页</b>：<br>zhangjunzhe349-coder.github.io/fittrack</li>
+    <li>分享按钮 → <b>添加到主屏幕</b>，效果等同 App</li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>🔄 已安装 · 检查更新</h2>
+  <ol>
+    <li>打开 App → ⚙️ 设置 → <b>检查更新</b></li>
+    <li>有新版会直接给出下载按钮</li>
+  </ol>
+</div>
+
+<div class="meta">
+  数据全部存储在本机，不上传服务器<br>
+  <a href="index.html" style="color:var(--tx2)">前往网页版 →</a>
+</div>
+
+<script>
+// 微信/QQ 内置浏览器拦截 APK 下载 → 显著提示
+const ua = navigator.userAgent;
+if (/MicroMessenger|QQ\/|Weibo/i.test(ua)) document.getElementById('err').style.display = 'block';
+</script>
+</body>
+</html>
