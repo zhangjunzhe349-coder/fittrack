@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.jayzen.fittrack",
+      "sha256_cert_fingerprints": [
+        "49309ac9de5edbc0ec43f3e563c6278d040fa26af24db68f889cff37778eb003"
+      ]
+    }
+  }
+]
