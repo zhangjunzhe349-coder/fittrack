@@ -1,5 +1,5 @@
 // FitTrack Service Worker —— cache-first，版本号更新即换缓存
-const CACHE = 'fittrack-v2.5';
+const CACHE = 'fittrack-v2.6';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png'];
 
 self.addEventListener('install', e => {
