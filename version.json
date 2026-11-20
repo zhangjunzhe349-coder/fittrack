@@ -1,5 +1,6 @@
 {
-  "version": "2.4.2",
+  "version": "2.5.0",
   "apk": "fittrack.apk",
+  "note": "切换为内置 WebView 壳，不再依赖 Chrome",
   "updatedAt": "2026-11-20"
 }
