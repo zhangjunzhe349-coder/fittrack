@@ -488,7 +488,7 @@ function go(p){
   });
   if(p==='diet') renderDiet(); else renderTrain();
 }
-function selDay(key){ viewDate=key; libOpen=false; renderAll(); }
+function selDay(key){ viewDate=key; libOpen=false; restAll=false; renderAll(); }
 
 // ============ Day strip ============
 function renderStrip(){
@@ -912,7 +912,7 @@ function importData(inp){
 }
 
 // ============ 训练 v3：每日手动标记训练日 + 动作库 ============
-let sessionOn=false, restTimer=null, restLeft=0, libOpen=false;
+let sessionOn=false, restTimer=null, restLeft=0, libOpen=false, restAll=false;
 
 function toggleTrainDay(){
   const d = D();
@@ -973,10 +973,16 @@ function renderTrain(){
 
   // 休息日：没有空白态，直接给可用动作（正常亮度，点了就是训练日）
   if(!on){
+    const shown = restAll ? lib : lib.slice(0,4);
     body.innerHTML = `
       <div class="sect"><h3>想练就练</h3><span>${lib.length} 个动作</span></div>
-      <div class="picklist">${lib.map((e,i)=>
-        `<button class="pickbtn ghost" onclick="startFromRest(${i})"><b>${esc(e.name)}</b><span>${e.sets}×8 · 现在练</span></button>`).join('')}</div>`;
+      <div class="picklist">${shown.map(e=>{
+        const i = lib.indexOf(e);
+        return `<button class="pickbtn ghost" onclick="startFromRest(${i})"><b>${esc(e.name)}</b><span>${e.sets}×8 · 现在练</span></button>`;
+      }).join('')}</div>
+      ${lib.length>4?`<button class="addbar" onclick="restAll=!restAll;renderTrain()">
+        <span>${restAll?'收起':'＋ 还有 '+(lib.length-4)+' 个动作'}</span><span class="n">${restAll?'':'展开全部'}</span>
+      </button>`:''}`;
     document.getElementById('sessArea').innerHTML = '';
     renderLib();
     return;
