@@ -1,6 +1,6 @@
 {
-  "version": "2.5.0",
+  "version": "2.6.0",
   "apk": "fittrack.apk",
-  "note": "切换为内置 WebView 壳，不再依赖 Chrome",
-  "updatedAt": "2026-11-20"
+  "note": "训练页改版：每日标记训练日 + 自定义动作库；顶部月历展开；新图标",
+  "updatedAt": "2026-11-26"
 }
