@@ -1,5 +1,5 @@
 // FitTrack Service Worker —— 页面网络优先（改版立即可见），静态资源缓存优先
-const CACHE = 'fittrack-v2.8';
+const CACHE = 'fittrack-v2.9';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-512-maskable.png'];
 
 self.addEventListener('install', e => {
