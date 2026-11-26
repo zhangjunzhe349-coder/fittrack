@@ -235,59 +235,23 @@ input,select,textarea{font-family:inherit}
 .templrow .del{color:var(--tx3);padding:2px 6px}
 .minibtn{background:var(--card2);border:1px solid var(--line);color:var(--tx2);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600}
 
-/* ===== 训练页 v3.1：日期是主角，状态只出现一次 ===== */
-.daytoggle{width:100%;border-radius:20px;padding:15px 16px;background:var(--card);border:1px solid var(--line);text-align:left;transition:background .25s,border-color .25s;margin-top:2px}
-.daytoggle.on{background:linear-gradient(160deg,rgba(198,244,50,.13),rgba(198,244,50,.025));border-color:rgba(198,244,50,.4)}
-.daytoggle .dt-top{display:flex;align-items:center;gap:14px}
-.daytoggle .dt-num{flex-shrink:0;min-width:54px;font-size:44px;font-weight:800;letter-spacing:-2.4px;line-height:.92;color:var(--tx2);transition:color .25s;font-variant-numeric:tabular-nums}
-.daytoggle.on .dt-num{color:var(--lime);text-shadow:0 0 24px rgba(198,244,50,.32)}
-.daytoggle .dt-meta{flex:1;min-width:0}
-.daytoggle .dt-t{font-size:16px;font-weight:800;letter-spacing:-.2px;line-height:1.15;display:flex;align-items:center;gap:7px}
-.daytoggle .dt-t .dot{width:5px;height:5px;border-radius:50%;background:var(--tx3);flex-shrink:0;transition:background .25s,box-shadow .25s}
-.daytoggle.on .dt-t .dot{background:var(--lime);box-shadow:0 0 9px rgba(198,244,50,.85)}
-.daytoggle .dt-s{font-size:11px;color:var(--tx2);line-height:1.5;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* 状态开关：操作由控件本身表达，不再写"点一下…" */
-.dt-sw{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 2px;min-width:52px}
-.dt-sw .sw{display:block;width:46px;height:27px;border-radius:999px;background:var(--card2);border:1px solid var(--line);position:relative;transition:background .25s,border-color .25s}
-.dt-sw .sw i{position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:var(--tx3);transition:left .26s cubic-bezier(.34,1.3,.64,1),background .2s}
-.daytoggle.on .dt-sw .sw{background:rgba(198,244,50,.16);border-color:rgba(198,244,50,.5)}
-.daytoggle.on .dt-sw .sw i{left:22px;background:var(--lime)}
-.dt-sw .lb{font-size:9px;color:var(--tx3);letter-spacing:.3px;transition:color .25s}
-.daytoggle.on .dt-sw .lb{color:rgba(198,244,50,.75)}
-/* 分区标题：替代原空白态的"今天休息"大块 */
-.sect{display:flex;align-items:baseline;justify-content:space-between;margin:18px 0 9px}
-.sect h3{font-size:13px;font-weight:700;color:var(--tx2);letter-spacing:.2px}
-.sect span{font-size:10px;color:var(--tx2);opacity:.8}
-/* 添加动作：折叠条，避免与"今日动作"两套列表打架 */
-.addbar{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:transparent;border:1px dashed var(--line);border-radius:12px;padding:11px 13px;color:var(--tx2);font-size:12.5px;font-weight:600;margin-top:12px;transition:border-color .18s,color .18s,background .18s}
-.addbar:active{border-color:rgba(198,244,50,.5);color:var(--lime)}
-.addbar.open{border-style:solid;background:var(--card)}
-.addbar .n{font-size:10px;color:var(--tx3);font-weight:400}
-
-.tstats{display:flex;gap:8px;margin:10px 0 4px}
-.tstat{flex:1;background:var(--card);border-radius:14px;padding:11px 10px;text-align:center}
-.tstat b{font-size:18px;display:block;font-variant-numeric:tabular-nums}
-.tstat span{font-size:9.5px;color:var(--tx3)}
-
-/* 今日动作 */
-.picklist{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.pickbtn{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 11px;text-align:left;transition:background .15s,border-color .15s}
-.pickbtn:active{background:rgba(198,244,50,.12);border-color:var(--lime)}
-.pickbtn b{display:block;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pickbtn span{font-size:9.5px;color:var(--tx2);opacity:.85}
-.pickbtn.added{border-color:rgba(198,244,50,.45);background:rgba(198,244,50,.08)}
-.pickbtn.added b{color:var(--lime)}
-/* 休息日的可选动作：降权，别让休息页看起来像训练页 */
-.pickbtn.ghost{background:transparent}
-.pickbtn.ghost:active{background:rgba(198,244,50,.1)}
-.exrow{display:flex;align-items:center;gap:9px;padding:11px 12px;background:var(--card);border-radius:13px;margin-bottom:7px}
-.exrow .nm{flex:1;min-width:0;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.exrow .st2{font-size:9.5px;color:var(--tx3);margin-top:2px;font-weight:400}
-.exrow .sets2{font-size:11px;color:var(--tx2);background:var(--card2);padding:3px 9px;border-radius:8px;white-space:nowrap}
-.exrow .x{color:var(--tx3);font-size:13px;padding:2px 4px}
-.librow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.librow input{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);border-radius:10px;color:var(--tx);padding:10px 11px;font-size:13px}
-.librow input:focus{border-color:var(--lime);outline:none}
+/* ===== 训练 v4：恢复旧卡片框架，状态一次、CTA 唯一 ===== */
+.tcard .exline .ord{width:16px;font-size:11px;color:var(--tx3);text-align:center;flex-shrink:0}
+.tcard .exline .x{color:var(--tx3);font-size:13px;padding:2px 4px;flex-shrink:0}
+.tcard .exempty{padding:14px 0;font-size:12.5px;color:var(--tx3);text-align:center}
+.tcard .restmeta{font-size:12px;color:var(--tx2);margin-bottom:16px;line-height:1.6}
+.addline{width:100%;background:transparent;border:1px dashed var(--line);border-radius:12px;color:var(--tx2);font-size:13px;font-weight:600;padding:12px;margin-top:4px;transition:border-color .18s,color .18s}
+.addline:active{border-color:rgba(198,244,50,.5);color:var(--lime)}
+.restact{width:100%;background:transparent;border:1.5px solid rgba(198,244,50,.55);border-radius:13px;color:var(--lime);font-size:14px;font-weight:700;padding:13px}
+.restact:active{background:rgba(198,244,50,.1)}
+/* 选动作 bottom sheet 的行 */
+.prow{width:100%;display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:7px;text-align:left;transition:border-color .15s,background .15s}
+.prow .nm{flex:1;min-width:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow .nm .st{font-size:10.5px;color:var(--tx3);font-weight:400;margin-top:2px}
+.prow .mark{flex-shrink:0;font-size:11px;color:var(--tx2);background:var(--bg);padding:5px 10px;border-radius:9px;white-space:nowrap}
+.prow.on{border-color:rgba(198,244,50,.5);background:rgba(198,244,50,.07)}
+.prow.on .mark{background:var(--lime);color:#111;font-weight:700}
+.pempty{padding:20px 0;text-align:center;font-size:12.5px;color:var(--tx3)}
 .toast{position:fixed;bottom:104px;left:50%;transform:translateX(-50%) translateY(6px);background:var(--lime);color:#111;padding:9px 18px;border-radius:20px;font-size:12.5px;font-weight:700;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;z-index:99;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.45)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 /* settings sheet */
@@ -363,7 +327,6 @@ input,select,textarea{font-family:inherit}
 
   <!-- ===== 训练页 ===== -->
   <div id="pg-train" style="display:none">
-    <div id="dayToggle"></div>
     <div id="trainBody"></div>
     <div id="sessArea"></div>
 
@@ -421,6 +384,14 @@ input,select,textarea{font-family:inherit}
   <div class="srow"><span>恢复备份</span><button class="btn-s" onclick="document.getElementById('impFile').click()">导入</button></div>
   <input type="file" id="impFile" accept=".json" style="display:none" onchange="importData(this)">
   <div class="srow" style="font-size:11px;color:var(--tx3)">目标：70kg · 蛋白140g · 碳水315g · 脂肪63g · 2450kcal · 纤维25g · 水2L</div>
+</div>
+
+<!-- 选动作 bottom sheet -->
+<div class="sheet" id="exSheet">
+  <div class="grab"></div>
+  <h3 id="exSheetTitle">选择今天的动作</h3>
+  <div id="exPickBody"></div>
+  <button class="bigbtn" onclick="closeAll()">完成</button>
 </div>
 
 <div class="restchip" id="restChip"></div>
@@ -488,7 +459,7 @@ function go(p){
   });
   if(p==='diet') renderDiet(); else renderTrain();
 }
-function selDay(key){ viewDate=key; libOpen=false; restAll=false; renderAll(); }
+function selDay(key){ viewDate=key; renderAll(); }
 
 // ============ Day strip ============
 function renderStrip(){
@@ -911,8 +882,8 @@ function importData(inp){
   r.readAsText(f);
 }
 
-// ============ 训练 v3：每日手动标记训练日 + 动作库 ============
-let sessionOn=false, restTimer=null, restLeft=0, libOpen=false, restAll=false;
+// ============ 训练 v4：旧卡片框架 + bottom sheet 选动作 ============
+let sessionOn=false, restTimer=null, restLeft=0;
 
 function toggleTrainDay(){
   const d = D();
@@ -921,103 +892,78 @@ function toggleTrainDay(){
   if(!d.train && !Object.values(d.workout||{}).some(b=>b&&b.sets&&b.sets.some(x=>x.done))){
     d.workout = {}; d.ex = [];
   }
-  if(d.train && !d.ex.length) libOpen = true;   // 刚开启且空着 → 直接展开动作库
   save(); sessionOn = d.train ? sessionOn : false;
   if(!d.train){ clearInterval(restTimer); chipHide(); }
   renderTrain(); renderStrip();
-  toast(d.train ? '训练日已开启' : '已设为休息日');
+  if(d.train && !d.ex.length){ renderExPick(); show('exSheet'); }
+  else toast(d.train ? '已开启训练日' : '已设为休息日');
 }
 
-// 休息日直接点动作 = 开启训练日并加入（一次渲染，避免两次 toast 互相覆盖）
-function startFromRest(i){
+function openExSheet(){ renderExPick(); show('exSheet'); }
+
+function renderExPick(){
+  const d = D(), lib = S.lib||[];
+  document.getElementById('exSheetTitle').textContent = '选择今天的动作';
+  document.getElementById('exPickBody').innerHTML = lib.length ? lib.map((e,i)=>{
+    const added = d.ex.some(x=>x.id===e.id);
+    return `<button class="prow ${added?'on':''}" onclick="togglePick(${i})">
+      <div class="nm">${esc(e.name)}<div class="st">${e.sets} 组 × 8 次</div></div>
+      <span class="mark">${added?'✓ 已加入':'＋ 加入'}</span>
+    </button>`;
+  }).join('') : `<div class="pempty">动作库还是空的，去下方「我的动作」里新增</div>`;
+}
+
+function togglePick(i){
   const e = (S.lib||[])[i]; if(!e) return;
   const d = D();
-  d.train = true;
-  if(!d.ex.some(x=>x.id===e.id)) d.ex.push({id:e.id, name:e.name, sets:+e.sets||4});
-  save(); renderTrain(); renderStrip();
-  toast(`训练日已开启 · 加入 ${e.name}`);
+  const idx = d.ex.findIndex(x=>x.id===e.id);
+  if(idx>=0){ d.ex.splice(idx,1); toast('已移出今日'); }
+  else{ d.ex.push({id:e.id, name:e.name, sets:+e.sets||4}); toast(`已加入 ${e.name}`); }
+  if(!d.train && d.ex.length) d.train = true;   // 休息日点动作 = 自动变训练日
+  save(); renderExPick(); renderTrain(); renderStrip();
 }
 
 function renderTrain(){
   const d = D(), on = isTrainDay(viewDate);
   const wd = new Date(viewDate+'T12:00:00');
   const wdName = '周'+'日一二三四五六'[wd.getDay()];
-  const dayNum = +viewDate.slice(8);
   const isToday = viewDate===todayKey();
-  const lib = S.lib||[];
-  const totalMin = Math.round(d.ex.reduce((s,e)=>s+((+e.sets||4)*1.8),0));
 
-  // 元信息只留一条：日期身份 + 当前状态真正需要的一句
-  const meta = on
-    ? `${wdName}${isToday?' · 今天':''}${d.ex.length?'':' · 还没选动作'}`
-    : `${wdName}${isToday?' · 今天':''} · 肌酸照吃，鱼油随餐`;
-
-  // ---- ① 日期卡：大数字 + 状态词 + 开关（状态词全页只出现这一次）----
-  document.getElementById('dayToggle').innerHTML = `
-    <div class="daytoggle ${on?'on':''}">
-      <div class="dt-top">
-        <div class="dt-num">${dayNum}</div>
-        <div class="dt-meta">
-          <div class="dt-t"><span class="dot"></span>${on?'训练日':'休息日'}</div>
-          <div class="dt-s">${meta}</div>
-        </div>
-        <button class="dt-sw" role="switch" aria-checked="${on}" aria-label="训练日开关" onclick="toggleTrainDay()">
-          <span class="sw"><i></i></span>
-          <span class="lb">训练</span>
-        </button>
-      </div>
-    </div>`;
-
-  // ---- ② 训练内容 ----
   const body = document.getElementById('trainBody');
 
-  // 休息日：没有空白态，直接给可用动作（正常亮度，点了就是训练日）
+  // ---- 休息日：一张安静卡片 + 一个中强调入口（状态只说一次）----
   if(!on){
-    const shown = restAll ? lib : lib.slice(0,4);
     body.innerHTML = `
-      <div class="sect"><h3>想练就练</h3><span>${lib.length} 个动作</span></div>
-      <div class="picklist">${shown.map(e=>{
-        const i = lib.indexOf(e);
-        return `<button class="pickbtn ghost" onclick="startFromRest(${i})"><b>${esc(e.name)}</b><span>${e.sets}×8 · 现在练</span></button>`;
-      }).join('')}</div>
-      ${lib.length>4?`<button class="addbar" onclick="restAll=!restAll;renderTrain()">
-        <span>${restAll?'收起':'＋ 还有 '+(lib.length-4)+' 个动作'}</span><span class="n">${restAll?'':'展开全部'}</span>
-      </button>`:''}`;
+      <div class="tcard">
+        <span class="split-tag rest">🛌 休息日 · ${wdName}${isToday?' · 今天':''}</span>
+        <h2>恢复也是训练的一部分</h2>
+        <div class="restmeta">肌酸照吃 · 鱼油随餐 · 想动就在下面选动作</div>
+        <button class="restact" onclick="openExSheet()">想练就练 →</button>
+      </div>`;
     document.getElementById('sessArea').innerHTML = '';
     renderLib();
     return;
   }
 
+  // ---- 训练日：旧版卡片框架，唯一 lime CTA ----
   const w = d.workout||{};
   let doneSets=0, vol=0;
   Object.values(w).forEach(b=>((b&&b.sets)||[]).forEach(x=>{ if(x.done){doneSets++; vol+=(+x.w||0)*(+x.r||0);} }));
   const allPlanned = d.ex.reduce((s,e)=>s+(+e.sets||4),0);
 
   body.innerHTML = `
-    ${d.ex.length?`<div class="tstats">
-      <div class="tstat"><b>${d.ex.length}</b><span>今日动作</span></div>
-      <div class="tstat"><b>${doneSets}/${allPlanned}</b><span>完成组数</span></div>
-      <div class="tstat"><b>${Math.round(vol)}</b><span>容量 kg</span></div>
-    </div>`:''}
-    ${d.ex.length?`
-      <div class="sect" style="margin-top:15px"><h3>今日动作</h3><span>约 ${totalMin} 分钟</span></div>
-      ${d.ex.map((e,ei)=>`<div class="exrow">
-        <span style="width:16px;font-size:11px;color:var(--tx3);text-align:center">${ei+1}</span>
-        <div class="nm">${esc(e.name)}<div class="st2">${prevPerformance(e.name)||'首次 · 无历史'}</div></div>
-        <span class="sets2">${e.sets}×8</span>
-        <button class="x" onclick="delEx(${ei})">✕</button>
-      </div>`).join('')}
-      ${sessionOn?''
-        :`<button class="startbtn" onclick="startSession()" style="margin-top:10px">▶ 开始训练 · ${d.ex.length} 个动作</button>`}
-    `:`<div class="sect"><h3>今日动作</h3><span>还没选 · 从下面挑</span></div>`}
-    <button class="addbar ${libOpen?'open':''}" onclick="libOpen=!libOpen;renderTrain()">
-      <span>${libOpen?'收起动作库':'＋ 添加动作'}</span><span class="n">${lib.length} 个动作</span>
-    </button>
-    ${libOpen?`<div class="picklist" style="margin-top:8px">${lib.map((e,i)=>{
-      const added = d.ex.some(x=>x.id===e.id);
-      return `<button class="pickbtn ${added?'added':''}" onclick="addEx(${i})"><b>${added?'✓ ':''}${esc(e.name)}</b><span>${e.sets}×8 · ${added?'已加入':'点击加入今日'}</span></button>`;
-    }).join('')}</div>
-    <div style="font-size:10px;color:var(--tx3);text-align:center;margin-top:8px">组数可在「动作库」里调整</div>`:''}`;
+    <div class="tcard">
+      <span class="split-tag">🏋️ ${isToday?'今天练':wdName+'练'} · 自定义</span>
+      ${d.ex.length
+        ? d.ex.map((e,ei)=>`<div class="exline"><span class="ord">${ei+1}</span>${esc(e.name)}<span class="sets">${e.sets}×8</span><button class="x" onclick="delEx(${ei})" aria-label="移除动作">✕</button></div>`).join('')
+        : `<div class="exempty">还没选动作 · 点下面添加</div>`}
+      <button class="addline" onclick="openExSheet()">＋ 添加动作</button>
+      ${sessionOn?'':`<button class="startbtn" onclick="startSession()">▶ 开始训练${d.ex.length?` · ${d.ex.length} 个动作`:''}</button>`}
+      <div class="tstats">
+        <div class="tstat"><b>${doneSets}/${allPlanned}</b><span>已完成组数</span></div>
+        <div class="tstat"><b>${Math.round(vol)}</b><span>累计容量 kg</span></div>
+      </div>
+    </div>`;
 
   document.getElementById('sessArea').innerHTML = sessionOn ? renderSession() : '';
   renderLib();
@@ -1141,7 +1087,7 @@ function endSession(){
   save(); renderTrain(); closeAll();
   toast(`训练完成 ✓ ${sets}组 · 容量 ${Math.round(vol)}kg`);
 }
-function startSession(){ sessionOn=true; renderTrain(); window.scrollTo({top:0,behavior:'smooth'}); }
+function startSession(){ if(!(D().ex||[]).length){ toast('先添加动作'); return; } sessionOn=true; renderTrain(); window.scrollTo({top:0,behavior:'smooth'}); }
 
 // ============ init ============
 function renderAll(){
