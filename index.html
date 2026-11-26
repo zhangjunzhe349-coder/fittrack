@@ -264,13 +264,6 @@ input,select,textarea{font-family:inherit}
 <div class="wrap">
   <div class="hd">
     <div class="brand" id="brand" onclick="toggleCal()" role="button" aria-label="展开月视图">
-      <span class="mark">
-        <svg viewBox="0 0 26 26" fill="none">
-          <circle cx="13" cy="13" r="9.8" stroke="#c6f432" stroke-width="2.2" stroke-linecap="round"
-                  stroke-dasharray="50.6 11" stroke-dashoffset="0" transform="rotate(-13 13 13)"/>
-          <path d="M10.6 8.9h5.2M10.6 13.1h4.3M10.6 8.9v8.2" stroke="#eef1f6" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-      </span>
       <div>
         <h1>FitTrack</h1>
         <div class="sub2" id="hdDate"></div>
@@ -811,7 +804,7 @@ function openSettings(){
   show('setSheet');
 }
 // ---- 检查更新：读 version.json 比对版本号，有新版则提供 APK 下载 ----
-const APP_VERSION='2.6.0';
+const APP_VERSION='2.7.0';
 const UPDATE_BASE = location.pathname.replace(/[^/]*$/, ''); // 站内相对路径
 function verKey(v){ return v.split('.').map(n=>+n||0); }
 function isNewer(a,b){ const x=verKey(a),y=verKey(b); for(let i=0;i<Math.max(x.length,y.length);i++){ if((y[i]||0)>(x[i]||0)) return true; if((y[i]||0)<(x[i]||0)) return false; } return false; }
