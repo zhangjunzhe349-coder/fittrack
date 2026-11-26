@@ -26,14 +26,53 @@ input,select,textarea{font-family:inherit}
 .wrap{padding:0 16px}
 
 /* header */
-.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 0 6px}
-.hd h1{font-size:20px;font-weight:800;letter-spacing:-.3px}
+.hd{display:flex;align-items:center;justify-content:space-between;padding:16px 0 6px;position:relative}
+.hd .brand{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;padding:2px 6px 2px 0;border-radius:12px;transition:opacity .15s}
+.hd .brand:active{opacity:.6}
+.hd .brand .mark{width:26px;height:26px;flex-shrink:0}
+.hd .brand .mark svg{display:block;width:100%;height:100%}
+.hd .brand h1{font-size:20px;font-weight:800;letter-spacing:-.3px;line-height:1.1}
+.hd .brand .sub2{font-size:10.5px;color:var(--tx3);margin-top:1px;line-height:1.2}
+.hd .brand .chev{margin-left:2px;font-size:10px;color:var(--tx3);transition:transform .3s cubic-bezier(.3,.9,.3,1);display:inline-block}
+.hd .brand.open .chev{transform:rotate(180deg)}
 .hd .gear{color:var(--tx3);font-size:18px;padding:4px}
-.hd .date{color:var(--tx2);font-size:12px}
+
+/* month calendar — 从日期条下方原地撑开，非新页面 */
+.calwrap{overflow:hidden;max-height:0;opacity:0;transition:max-height .42s cubic-bezier(.25,.9,.3,1),opacity .28s ease,margin .42s cubic-bezier(.25,.9,.3,1);margin:0}
+.calwrap.open{max-height:520px;opacity:1;margin:2px 0 4px}
+.calbox{background:var(--card);border-radius:16px;padding:12px 12px 10px;transform:translateY(-8px);transition:transform .42s cubic-bezier(.25,.9,.3,1)}
+.calwrap.open .calbox{transform:translateY(0)}
+.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 2px}
+.calhead .mt{font-size:13px;font-weight:700}
+.calhead .mt span{font-size:10px;color:var(--tx3);font-weight:400;margin-left:6px}
+.calhead .nav2{display:flex;gap:2px}
+.calhead .nav2 button{color:var(--tx2);font-size:15px;padding:2px 9px;border-radius:8px}
+.calhead .nav2 button:active{background:var(--card2)}
+.calhead .nav2 .jm{font-size:10.5px;color:var(--tx3);padding:2px 7px}
+.cgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cg-h{font-size:9.5px;color:var(--tx3);text-align:center;padding:2px 0 4px}
+.cg-d{aspect-ratio:1/1.18;border-radius:9px;background:var(--bg);border:1px solid transparent;padding:3px 4px;position:relative;cursor:pointer;overflow:hidden;transition:background .15s,border-color .15s}
+.cg-d.blank{background:transparent;cursor:default}
+.cg-d:active{background:var(--card2)}
+.cg-d .n{font-size:11px;font-weight:700;line-height:1.25;color:var(--tx2)}
+.cg-d .k{font-size:8.5px;color:var(--tx3);line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden}
+.cg-d .tr{position:absolute;top:2px;right:3px;font-size:7.5px;font-weight:800;color:var(--lime);letter-spacing:.3px}
+.cg-d.today{border-color:var(--tx3)}
+.cg-d.today .n{color:var(--tx)}
+.cg-d.sel{border-color:var(--lime);background:var(--card2)}
+.cg-d.sel .n{color:var(--lime)}
+.cg-d.st-ok{background:rgba(198,244,50,.13)}
+.cg-d.st-ok .k{color:var(--lime)}
+.cg-d.st-part .k{color:var(--amber)}
+.cg-d.st-over .k{color:var(--red)}
+.cg-d .ebar{margin:3px 0 0}
+.clegend{display:flex;gap:10px;margin-top:9px;font-size:9.5px;color:var(--tx3);flex-wrap:wrap;padding:0 2px}
+.clegend i{font-style:normal;margin-right:3px}
 
 /* day strip */
 .strip{display:flex;gap:6px;margin:10px 0 14px}
-.dchip{flex:1;text-align:center;padding:8px 0 9px;border-radius:12px;background:var(--card);border:1px solid transparent}
+.dchip{flex:1;text-align:center;padding:8px 0 9px;border-radius:12px;background:var(--card);border:1px solid transparent;transition:background .2s,border-color .2s,transform .2s}
+.dchip.is-train{background:rgba(198,244,50,.07);border-color:rgba(198,244,50,.22)}
 .dchip .w{font-size:10px;color:var(--tx3)}
 .dchip .d{font-size:15px;font-weight:700;margin-top:2px}
 .dchip.today{border-color:var(--line)}
@@ -195,8 +234,43 @@ input,select,textarea{font-family:inherit}
 .templrow input.name{flex:1} .templrow input.sets{width:76px}
 .templrow .del{color:var(--tx3);padding:2px 6px}
 .minibtn{background:var(--card2);border:1px solid var(--line);color:var(--tx2);border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--lime);color:#111;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99}
-.toast.show{opacity:1}
+
+/* ===== 训练页 v3：每日干训练日标记 + 动作库 ===== */
+.daytoggle{width:100%;border-radius:20px;padding:16px 16px 14px;background:var(--card);border:1px solid var(--line);text-align:left;transition:background .25s,border-color .25s;margin-top:2px}
+.daytoggle.on{background:linear-gradient(160deg,rgba(198,244,50,.14),rgba(198,244,50,.03));border-color:rgba(198,244,50,.42)}
+.daytoggle .dt-top{display:flex;align-items:center;gap:12px}
+.daytoggle .dt-num{font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--tx3);transition:color .25s;font-variant-numeric:tabular-nums}
+.daytoggle.on .dt-num{color:var(--lime);text-shadow:0 0 24px rgba(198,244,50,.35)}
+.daytoggle .dt-meta{flex:1;min-width:0}
+.daytoggle .dt-t{font-size:15px;font-weight:700;margin-bottom:3px}
+.daytoggle .dt-s{font-size:11.5px;color:var(--tx3);line-height:1.5}
+.daytoggle .dt-pill{flex-shrink:0;font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:20px;background:var(--card2);color:var(--tx2);border:1px solid var(--line)}
+.daytoggle.on .dt-pill{background:var(--lime);color:#0b0d10;border-color:var(--lime)}
+.daytoggle .dt-hint{margin-top:12px;font-size:10.5px;color:var(--tx3);text-align:center;letter-spacing:.2px}
+
+.tstats{display:flex;gap:8px;margin:10px 0 4px}
+.tstat{flex:1;background:var(--card);border-radius:14px;padding:11px 10px;text-align:center}
+.tstat b{font-size:18px;display:block;font-variant-numeric:tabular-nums}
+.tstat span{font-size:9.5px;color:var(--tx3)}
+
+/* 今日动作 */
+.picklist{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.pickbtn{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 11px;text-align:left;transition:background .15s,border-color .15s}
+.pickbtn:active{background:rgba(198,244,50,.12);border-color:var(--lime)}
+.pickbtn b{display:block;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pickbtn span{font-size:9.5px;color:var(--tx3)}
+.pickbtn.added{border-color:rgba(198,244,50,.45);background:rgba(198,244,50,.08)}
+.pickbtn.added b{color:var(--lime)}
+.exrow{display:flex;align-items:center;gap:9px;padding:11px 12px;background:var(--card);border-radius:13px;margin-bottom:7px}
+.exrow .nm{flex:1;min-width:0;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.exrow .st2{font-size:9.5px;color:var(--tx3);margin-top:2px;font-weight:400}
+.exrow .sets2{font-size:11px;color:var(--tx2);background:var(--card2);padding:3px 9px;border-radius:8px;white-space:nowrap}
+.exrow .x{color:var(--tx3);font-size:13px;padding:2px 4px}
+.librow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.librow input{flex:1;min-width:0;background:var(--card2);border:1px solid var(--line);border-radius:10px;color:var(--tx);padding:10px 11px;font-size:13px}
+.librow input:focus{border-color:var(--lime);outline:none}
+.toast{position:fixed;top:68px;left:50%;transform:translateX(-50%) translateY(-6px);background:var(--lime);color:#111;padding:9px 18px;border-radius:20px;font-size:12.5px;font-weight:700;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;z-index:99;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 /* settings sheet */
 .srow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:14px}
 .srow .btn-s{background:var(--card2);border:1px solid var(--line);color:var(--tx2);border-radius:10px;padding:8px 14px;font-size:12px}
@@ -206,10 +280,26 @@ input,select,textarea{font-family:inherit}
 
 <div class="wrap">
   <div class="hd">
-    <div><h1>FitTrack</h1><div class="date" id="hdDate"></div></div>
+    <div class="brand" id="brand" onclick="toggleCal()" role="button" aria-label="展开月视图">
+      <span class="mark">
+        <svg viewBox="0 0 26 26" fill="none">
+          <circle cx="13" cy="13" r="9.8" stroke="#c6f432" stroke-width="2.2" stroke-linecap="round"
+                  stroke-dasharray="50.6 11" stroke-dashoffset="0" transform="rotate(-13 13 13)"/>
+          <path d="M10.6 8.9h5.2M10.6 13.1h4.3M10.6 8.9v8.2" stroke="#eef1f6" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <div>
+        <h1>FitTrack</h1>
+        <div class="sub2" id="hdDate"></div>
+      </div>
+      <span class="chev">▼</span>
+    </div>
     <button class="gear" onclick="openSettings()">⚙️</button>
   </div>
   <div class="strip" id="strip"></div>
+  <div class="calwrap" id="calWrap">
+    <div class="calbox" id="calBox"></div>
+  </div>
 
   <!-- ===== 饮食页 ===== -->
   <div id="pg-diet">
@@ -254,20 +344,14 @@ input,select,textarea{font-family:inherit}
 
   <!-- ===== 训练页 ===== -->
   <div id="pg-train" style="display:none">
-    <div class="tcard" id="trainCard"></div>
+    <div id="dayToggle"></div>
+    <div id="trainBody"></div>
     <div id="sessArea"></div>
-    <div class="st"><h2>排班与模板</h2><span class="sub">完全自定义</span></div>
-    <div class="fold">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>📅 一周排班</h3><span class="badge">练A / 练B / 休息</span></div>
-      <div class="body" id="schedBody"></div>
-    </div>
-    <div class="fold">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🧩 模板 练A</h3><span class="badge" id="taCnt"></span></div>
-      <div class="body" id="tmplA"></div>
-    </div>
-    <div class="fold">
-      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🧩 模板 练B</h3><span class="badge" id="tbCnt"></span></div>
-      <div class="body" id="tmplB"></div>
+
+    <div class="st"><h2>动作库</h2><span class="sub">自定义 · 训练日从中挑动作</span></div>
+    <div class="fold" id="foldLib">
+      <div class="fh" onclick="this.parentElement.classList.toggle('open')"><h3>🎯 我的动作</h3><span class="badge" id="libBadge"></span></div>
+      <div class="body" id="libBody"></div>
     </div>
 
     <div class="st"><h2>数据</h2><span class="sub">纯数据 JSON 导出</span></div>
@@ -335,29 +419,41 @@ const MEALS = [
 const BED = ['蛋白质凑够140g','碳水：训练日拉高/休息日略降','纤维≥25g','喝水≥2L','补剂吃完'];
 const SUP_T = [['t_fish','Swisse 鱼油 1粒','晚餐随餐'],['t_mass','增肌粉 1份','练后30min内'],['t_creat','肌酸片 6片','练后 · 与增肌粉同服'],['t_banana','练前香蕉(可选)','练前45-60min · 看饥饿度']];
 const SUP_R = [['r_fish','Swisse 鱼油 1粒','晚餐随餐'],['r_creat','肌酸片 6片','推荐晚餐 · 每天必吃'],['r_mass','增肌粉 1份(按需)','三餐没达标才喝']];
-const DEF_TMPL = {
-  A:[{name:'杠铃卧推',sets:'4×8'},{name:'哑铃肩推',sets:'3×10'},{name:'杠铃划船',sets:'4×8'},{name:'高位下拉',sets:'3×10'},{name:'二头弯举',sets:'3×12'}],
-  B:[{name:'杠铃深蹲',sets:'4×8'},{name:'罗马尼亚硬拉',sets:'3×8'},{name:'腿举',sets:'3×12'},{name:'腿弯举',sets:'3×12'},{name:'卷腹',sets:'3×15'}]
-};
 const REST_SEC = 90;
+const DEF_LIB = [
+  {id:'l0', name:'杠铃卧推', sets:4}, {id:'l1', name:'哑铃肩推', sets:3},
+  {id:'l2', name:'杠铃划船', sets:4}, {id:'l3', name:'高位下拉', sets:3},
+  {id:'l4', name:'二头弯举', sets:3}, {id:'l5', name:'杠铃深蹲', sets:4},
+  {id:'l6', name:'罗马尼亚硬拉', sets:3}, {id:'l7', name:'腿举', sets:3},
+  {id:'l8', name:'腿弯举', sets:3}, {id:'l9', name:'卷腹', sets:3},
+  {id:'l10', name:'侧平举', sets:3}, {id:'l11', name:'三头下压', sets:3}
+];
 const h = ()=>new Date().getHours();
 
 // ============ 状态 ============
 let S = load(), viewDate = todayKey(), pg = 'diet';
+let viewAnchor = new Date();   // 周横条当前显示的所在周锚点
 function todayKey(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function dateKey(offset){ const d=new Date(); d.setDate(d.getDate()+offset); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-function blankDay(){ return {meals:{b:[],l:[],d:[],s:[]}, sup:{}, bed:{}, water:0, workout:{}}; }
+function blankDay(){ return {meals:{b:[],l:[],d:[],s:[]}, sup:{}, bed:{}, water:0, workout:{}, train:false, ex:[]}; }
 function load(){
   try{
     const raw = JSON.parse(localStorage.getItem('fittrack_v2')||'{}');
-    raw.days = raw.days||{}; raw.schedule = raw.schedule||['A','B','rest','A','B','rest','rest'];
-    raw.tmpl = raw.tmpl||JSON.parse(JSON.stringify(DEF_TMPL));
+    raw.days = raw.days||{};
+    if(!Array.isArray(raw.lib)) raw.lib = JSON.parse(JSON.stringify(DEF_LIB));
     return raw;
-  }catch(e){ return {days:{}, schedule:['A','B','rest','A','B','rest','rest'], tmpl:JSON.parse(JSON.stringify(DEF_TMPL))}; }
+  }catch(e){ return {days:{}, lib:JSON.parse(JSON.stringify(DEF_LIB))}; }
 }
 function save(){ localStorage.setItem('fittrack_v2', JSON.stringify(S)); }
-function D(){ if(!S.days[viewDate]) S.days[viewDate]=blankDay(); return S.days[viewDate]; }
-function splitOf(key){ const d=new Date(key+'T12:00:00'); const i=d.getDay()===0?6:d.getDay()-1; return S.schedule[i]; }
+function D(){ if(!S.days[viewDate]) S.days[viewDate]=blankDay(); const d=S.days[viewDate]; if(!Array.isArray(d.ex)) d.ex=[]; return d; }
+// 兼容旧版：没有 train 字段时，按旧排班推断一次（只读，不写库）
+function isTrainDay(key){
+  const dd=S.days[key];
+  if(dd && typeof dd.train==='boolean') return dd.train;
+  if(Array.isArray(S.schedule)){ const d=new Date(key+'T12:00:00'); const i=d.getDay()===0?6:d.getDay()-1; return S.schedule[i]!=='rest'; }
+  // 旧数据若无 workout 记录则视为休息日
+  return !!(dd && dd.workout && Object.keys(dd.workout).length);
+}
 function kcalOf(p,c,f){ return Math.round((+p||0)*4+(+c||0)*4+(+f||0)*9); }
 // 条目级热量：AI/标签直读的热量(kc)优先，否则按 4/4/9 反算
 function kcalOfE(e){ return e && +e.kc>0 ? Math.round(+e.kc) : kcalOf(e&&e.p, e&&e.c, e&&e.f); }
@@ -377,25 +473,87 @@ function selDay(key){ viewDate=key; renderAll(); }
 
 // ============ Day strip ============
 function renderStrip(){
-  const base = new Date().getDay(), names=['一','二','三','四','五','六','日'];
+  const base = viewAnchor.getDay(), names=['一','二','三','四','五','六','日'];
   const todayIdx = base===0?6:base-1;
   const monOffset = -(todayIdx);
   const today = todayKey();
   document.getElementById('strip').innerHTML = names.map((n,i)=>{
-    const key = dateKey(monOffset+i);
+    const key = dateKeyFrom(viewAnchor, monOffset+i);
     const t = dayTotalsFor(key);
     const st = dayStatus(key);
     const dayNum = +key.slice(8);
-    // 能量条：按当日热量进度填充，颜色按达标状态（未来/无记录不填充）
     const future = key > today;
     const pct = (t && t.n>0 && !future) ? Math.min(100, t.kcal/T.kcal*100) : 0;
     const cls = st.cls==='st-ok'?'ok':st.cls==='st-over'?'over':st.cls==='st-part'?'part':'';
-    return `<div class="dchip ${key===today?'today':''} ${key===viewDate?'sel':''}" onclick="selDay('${key}')">
-      <div class="w">${key===today?'今天':n}</div><div class="d">${dayNum}</div>
+    const tr = isTrainDay(key);
+    return `<div class="dchip ${key===today?'today':''} ${key===viewDate?'sel':''} ${tr?'is-train':''}" onclick="selDay('${key}')">
+      <div class="w" style="${tr?'color:var(--lime)':''}">${key===today?'今天':n}</div>
+      <div class="d" style="${tr?'color:var(--lime);text-shadow:0 0 12px rgba(198,244,50,.45)':''}">${dayNum}</div>
       <div class="ebar ${cls}"><i style="width:${pct}%"></i></div></div>`;
   }).join('');
   const wd = new Date(viewDate+'T12:00:00');
   document.getElementById('hdDate').textContent = `${viewDate.slice(5).replace('-','/')} 周${'日一二三四五六'[wd.getDay()]}${viewDate===todayKey()?'':' · 回看'}`;
+}
+function dateKeyFrom(anchor, offset){ const d=new Date(anchor); d.setDate(d.getDate()+offset); return fmtKey(d); }
+
+// ============ 月历（点击顶部品牌区原地展开） ============
+let calOpen = false, calAnchor = new Date();
+function toggleCal(){
+  calOpen = !calOpen;
+  const w = document.getElementById('calWrap'), b = document.getElementById('brand');
+  b.classList.toggle('open', calOpen);
+  if(calOpen){
+    calAnchor = new Date(viewDate+'T12:00:00');
+    renderCal();
+    w.classList.add('open');
+  } else {
+    w.classList.remove('open');
+  }
+}
+function calShift(n){
+  calAnchor = new Date(calAnchor.getFullYear(), calAnchor.getMonth()+n, 1);
+  renderCal();
+}
+function calToday(){ calAnchor = new Date(); renderCal(); }
+function renderCal(){
+  const y = calAnchor.getFullYear(), m = calAnchor.getMonth();
+  const first = new Date(y, m, 1);
+  const startIdx = (first.getDay()+6)%7;           // 周一为第一列
+  const days = new Date(y, m+1, 0).getDate();
+  const mkey = d=>`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  const today = todayKey();
+  let cells = '';
+  for(let i=0;i<startIdx;i++) cells += '<div class="cg-d blank"></div>';
+  for(let d=1;d<=days;d++){
+    const k = mkey(d), st = dayStatus(k), tr = isTrainDay(k);
+    const t = dayTotalsFor(k);
+    const future = k > today;
+    const pct = (t && t.n>0 && !future) ? Math.min(100, t.kcal/T.kcal*100) : 0;
+    const cls = st.cls==='st-ok'?'ok':st.cls==='st-over'?'over':st.cls==='st-part'?'part':'';
+    cells += `<div class="cg-d ${st.cls} ${k===today?'today':''} ${k===viewDate?'sel':''}" onclick="calPick('${k}')">
+      <div class="n">${d}</div>
+      ${tr?'<span class="tr">练</span>':''}
+      <div class="k">${st.kcal!==null?st.kcal:'—'}</div>
+      <div class="ebar ${cls}"><i style="width:${pct}%"></i></div>
+    </div>`;
+  }
+  const mPrefix = `${y}-${String(m+1).padStart(2,'0')}`;
+  const trN = Object.keys(S.days).filter(k=>k.startsWith(mPrefix)&&isTrainDay(k)).length;
+  const logN = Object.keys(S.days).filter(k=>k.startsWith(mPrefix)&&dayTotalsFor(k)&&dayTotalsFor(k).n>0).length;
+  const wdNames = ['一','二','三','四','五','六','日'];
+  document.getElementById('calBox').innerHTML =
+    `<div class="calhead">
+      <div class="mt">${y}年${m+1}月<span>训练 ${trN} · 记录 ${logN} 天</span></div>
+      <div class="nav2"><button onclick="calShift(-1)">‹</button><button class="jm" onclick="calToday()">今</button><button onclick="calShift(1)">›</button></div>
+    </div>
+    <div class="cgrid">${wdNames.map(n=>`<div class="cg-h">${n}</div>`).join('')}${cells}</div>
+    <div class="clegend"><span><i style="color:var(--lime)">■</i>达标</span><span><i style="color:var(--amber)">■</i>有记录</span><span><i style="color:var(--red)">■</i>超标</span><span><i style="color:var(--lime)">练</i>训练日</span></div>`;
+}
+function calPick(k){
+  viewDate = k;
+  calAnchor = new Date(k+'T12:00:00');
+  renderAll(); renderCal();
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // ============ Hero ============
@@ -471,7 +629,7 @@ function dayTrained(key){
 
 // ============ 执行项 ============
 function renderSup(){
-  const isTrain = splitOf(viewDate)!=='rest';
+  const isTrain = isTrainDay(viewDate);
   const list = isTrain?SUP_T:SUP_R;
   const done = list.filter(s=>D().sup[s[0]]).length;
   document.getElementById('supBadge').textContent = `${done}/${list.length}`;
@@ -663,7 +821,7 @@ function openSettings(){
   show('setSheet');
 }
 // ---- 检查更新：读 version.json 比对版本号，有新版则提供 APK 下载 ----
-const APP_VERSION='2.5.0';
+const APP_VERSION='2.6.0';
 const UPDATE_BASE = location.pathname.replace(/[^/]*$/, ''); // 站内相对路径
 function verKey(v){ return v.split('.').map(n=>+n||0); }
 function isNewer(a,b){ const x=verKey(a),y=verKey(b); for(let i=0;i<Math.max(x.length,y.length);i++){ if((y[i]||0)>(x[i]||0)) return true; if((y[i]||0)<(x[i]||0)) return false; } return false; }
@@ -730,117 +888,216 @@ function exportRange(kind){
 function importData(inp){
   const f=inp.files[0]; if(!f)return;
   const r=new FileReader();
-  r.onload=e=>{ try{ S=JSON.parse(e.target.result); S.schedule=S.schedule||['A','B','rest','A','B','rest','rest']; S.tmpl=S.tmpl||JSON.parse(JSON.stringify(DEF_TMPL)); save(); renderAll(); closeAll(); toast('导入成功'); }catch(err){ toast('格式错误'); } };
+  r.onload=e=>{ try{ S=JSON.parse(e.target.result); if(!Array.isArray(S.lib)) S.lib=JSON.parse(JSON.stringify(DEF_LIB)); S.days=S.days||{}; save(); renderAll(); closeAll(); toast('导入成功'); }catch(err){ toast('格式错误'); } };
   r.readAsText(f);
 }
 
-// ============ 训练 ============
+// ============ 训练 v3：每日手动标记训练日 + 动作库 ============
 let sessionOn=false, restTimer=null, restLeft=0;
+
+function toggleTrainDay(){
+  const d = D();
+  d.train = !d.train;
+  // 取消训练日时，若当天还没练过任何组，清掉动作列表避免脏数据堆积
+  if(!d.train && !Object.values(d.workout||{}).some(b=>b&&b.sets&&b.sets.some(x=>x.done))){
+    d.workout = {}; d.ex = [];
+  }
+  save(); sessionOn = d.train ? sessionOn : false;
+  if(!d.train){ clearInterval(restTimer); chipHide(); }
+  renderTrain(); renderStrip();
+  toast(d.train ? '🏋️ 已标记为训练日' : '🛌 已改为休息日');
+}
+
 function renderTrain(){
-  const sp = splitOf(viewDate), card=document.getElementById('trainCard');
-  if(sp==='rest'){
-    card.innerHTML = `<span class="split-tag rest">🛌 休息日</span><h2>今天不练</h2>
-      <div class="exline"><span>肌酸照吃 · 鱼油随餐 · 散步也行，恢复也是训练的一部分</span></div>`;
-    document.getElementById('sessArea').innerHTML='';
-    document.getElementById('taCnt').textContent=S.tmpl.A.length+'个动作';
-    document.getElementById('tbCnt').textContent=S.tmpl.B.length+'个动作';
-    renderSched(); renderTmpl('A'); renderTmpl('B');
+  const d = D(), on = isTrainDay(viewDate);
+  const wd = new Date(viewDate+'T12:00:00');
+  const wdName = '周'+'日一二三四五六'[wd.getDay()];
+  const dayNum = +viewDate.slice(8);
+  const isToday = viewDate===todayKey();
+
+  // ---- ① 训练日开关 ----
+  document.getElementById('dayToggle').innerHTML = `
+    <button class="daytoggle ${on?'on':''}" onclick="toggleTrainDay()">
+      <div class="dt-top">
+        <div class="dt-num">${dayNum}</div>
+        <div class="dt-meta">
+          <div class="dt-t">${on?'训练日':'休息日'}</div>
+          <div class="dt-s">${wdName}${isToday?' · 今天':''} · ${on?(d.ex.length?`已选 ${d.ex.length} 个动作`:'还没选动作'):'肌酸照吃 · 鱼油随餐'}</div>
+        </div>
+        <div class="dt-pill">${on?'训练日':'休息日'}</div>
+      </div>
+      <div class="dt-hint">${on?'点一下改回休息日':'点一下标记为训练日'}</div>
+    </button>`;
+
+  // ---- ② 训练内容 ----
+  const body = document.getElementById('trainBody');
+  if(!on){
+    body.innerHTML = `
+      <div style="text-align:center;padding:26px 12px 20px">
+        <div style="font-size:30px;margin-bottom:8px;opacity:.5">🛌</div>
+        <div style="font-size:13.5px;color:var(--tx2);margin-bottom:4px">${isToday?'今天休息':'这一天休息'}</div>
+        <div style="font-size:11.5px;color:var(--tx3)">恢复也是训练的一部分 · 想练就点上面的按钮</div>
+      </div>
+      <div class="picklist" style="opacity:.55">${(S.lib||[]).slice(0,4).map((e,i)=>
+        `<button class="pickbtn" onclick="toggleTrainDay();addEx(${i})"><b>${esc(e.name)}</b><span>${e.sets}×8 · 现在练</span></button>`).join('')}</div>
+      <div style="font-size:10px;color:var(--tx3);text-align:center;margin-top:8px">快捷开始：直接点动作 = 标记训练日并加入</div>`;
+    document.getElementById('sessArea').innerHTML = '';
+    renderLib();
     return;
   }
-  const tm = S.tmpl[sp]||[];
-  const w = D().workout[sp]||{};
-  const doneSets = Object.values(w).reduce((s,arr)=>s+((arr&&arr.sets)||[]).filter(x=>x.done).length,0);
-  const vol = Object.values(w).reduce((s,arr)=>s+((arr&&arr.sets)||[]).reduce((v,x)=>v+(x.done?(+x.w||0)*(+x.r||0):0),0),0);
-  const allPlanned = tm.reduce((s,e)=>s+(+String(e.sets).split('×')[0]||3),0);
-  if(!sessionOn){
-    card.innerHTML = `<span class="split-tag">🏋️ 今天练${sp}</span><h2>${sp==='A'?'上肢日':'下肢日'}</h2>
-      ${tm.map(e=>`<div class="exline"><span>${esc(e.name)}</span><span class="sets">${esc(e.sets)}</span></div>`).join('')}
-      <button class="startbtn" onclick="startSession()">▶ 开始训练</button>
-      <div class="tstats"><div class="tstat"><b>${doneSets}/${allPlanned}</b><span>已完成组数</span></div><div class="tstat"><b>${Math.round(vol)}</b><span>累计容量 kg</span></div></div>`;
-  } else {
-    card.innerHTML = `<span class="split-tag">🔴 训练中 · 练${sp}</span><h2>${sp==='A'?'上肢日':'下肢日'}</h2>`;
-  }
-  document.getElementById('sessArea').innerHTML = sessionOn ? renderSession(sp) : '';
-  document.getElementById('taCnt').textContent=S.tmpl.A.length+'个动作';
-  document.getElementById('tbCnt').textContent=S.tmpl.B.length+'个动作';
-  renderSched(); renderTmpl('A'); renderTmpl('B');
-}
-function renderSession(sp){
-  const tm=S.tmpl[sp]||[], w=D().workout[sp]=D().workout[sp]||{};
-  return `<div class="sess">${tm.map((e,ei)=>{
-    const planned = +String(e.sets).split('×')[0]||3, targetReps = String(e.sets).split('×')[1]||'10';
-    // 兼容旧数据：数组结构或缺失 sets 时重建，避免崩溃
-    let blk = w[ei];
-    if(Array.isArray(blk)) blk = w[ei] = {name:e.name, sets:blk};
-    if(!blk || !blk.sets) blk = w[ei] = {name:e.name, sets:Array.from({length:planned},()=>({w:'',r:'',done:false}))};
-    const arr = blk.sets;
-    while(arr.length<planned) arr.push({w:'',r:'',done:false});
-    const prev = prevPerformance(e.name);
-    return `<div class="exblk"><h4>${esc(e.name)}<span>目标 ${esc(e.sets)} · 休息${REST_SEC}s</span></h4>
-      ${prev?`<div class="prevhint">上次：${esc(prev)}</div>`:''}
-      ${arr.map((x,si)=>`<div class="setrow ${x.done?'done':''}">
-        <span class="idx">${si+1}</span>
-        <input type="number" inputmode="decimal" placeholder="重量" value="${x.w}" oninput="setVal(${ei},${si},'w',this.value)"><span class="unitlbl">kg</span>
-        <input type="number" inputmode="numeric" placeholder="${targetReps}" value="${x.r}" oninput="setVal(${ei},${si},'r',this.value)"><span class="unitlbl">次</span>
-        <button class="done" onclick="completeSet(${ei},${si})">✓</button>
+
+  const w = d.workout||{};
+  let doneSets=0, vol=0;
+  Object.values(w).forEach(b=>((b&&b.sets)||[]).forEach(x=>{ if(x.done){doneSets++; vol+=(+x.w||0)*(+x.r||0);} }));
+  const allPlanned = d.ex.reduce((s,e)=>s+(+e.sets||4),0);
+
+  const totalH = d.ex.reduce((s,e)=>s+((+e.sets||4)*(1.8)),0);
+  body.innerHTML = `
+    <div class="tstats">
+      <div class="tstat"><b>${d.ex.length}</b><span>今日动作</span></div>
+      <div class="tstat"><b>${doneSets}/${allPlanned}</b><span>完成组数</span></div>
+      <div class="tstat"><b>${Math.round(vol)}</b><span>容量 kg</span></div>
+    </div>
+    <div class="picklist">${(S.lib||[]).map((e,i)=>{
+      const added = d.ex.some(x=>x.id===e.id);
+      return `<button class="pickbtn ${added?'added':''}" onclick="addEx(${i})"><b>${added?'✓ ':''}${esc(e.name)}</b><span>${e.sets}×8 · ${added?'已加入':'点击加入今日'}</span></button>`;
+    }).join('')}</div>
+    ${d.ex.length?`
+      <div class="st" style="margin:16px 0 8px"><h2 style="font-size:14px">今日动作</h2><span class="sub">约 ${Math.round(totalH)} 分钟</span></div>
+      ${d.ex.map((e,ei)=>`<div class="exrow">
+        <span style="width:16px;font-size:11px;color:var(--tx3);text-align:center">${ei+1}</span>
+        <div class="nm">${esc(e.name)}<div class="st2">${prevPerformance(e.name)||'首次 · 无历史'}</div></div>
+        <span class="sets2">${e.sets}×8</span>
+        <button class="x" onclick="delEx(${ei})">✕</button>
       </div>`).join('')}
-    </div>`;
-  }).join('')}
-  <button class="ghostbtn" style="background:var(--red);color:#fff" onclick="endSession()">■ 结束训练</button>
-  <div style="height:8px"></div></div>`;
+      ${sessionOn?''
+        :`<button class="startbtn" onclick="startSession()" style="margin-top:10px">▶ 开始训练 · ${d.ex.length} 个动作</button>`}
+      <div style="font-size:10px;color:var(--tx3);text-align:center;margin-top:8px">动作默认 4×8，可在动作库里改组数</div>
+    `:`<div class="empty" style="text-align:center;padding:22px 0;font-size:12.5px">从上面挑几个动作 → 组成今天的训练</div>`}`;
+
+  document.getElementById('sessArea').innerHTML = sessionOn ? renderSession() : '';
+  renderLib();
+}
+
+function renderLib(){
+  const lib = S.lib||[];
+  document.getElementById('libBadge').textContent = lib.length+'个';
+  document.getElementById('libBody').innerHTML =
+    lib.map((e,i)=>`<div class="librow">
+      <input value="${esc(e.name)}" onchange="S.lib[${i}].name=this.value.trim()||S.lib[${i}].name;save();syncExName(${i});renderTrain()" placeholder="动作名">
+      <input style="flex:0 0 62px;text-align:center" type="number" value="${e.sets}" onchange="S.lib[${i}].sets=Math.max(1,Math.min(20,+this.value||4));save();renderTrain()" title="组数">
+      <span class="unitlbl" style="flex:0 0 auto">组</span>
+      <button class="x" style="color:var(--tx3);padding:2px 4px" onclick="delLib(${i})">✕</button>
+    </div>`).join('')
+    + `<button class="minibtn" style="width:100%;margin-top:6px;padding:11px" onclick="addLib()">＋ 新增动作</button>
+       <div style="font-size:10px;color:var(--tx3);margin-top:8px;line-height:1.6">新增的动作立刻出现在训练日的动作选择里 · 默认组数 4</div>`;
+}
+function addLib(){
+  S.lib = S.lib||[];
+  const id = 'c'+Date.now().toString(36);
+  S.lib.push({id, name:'新动作', sets:4});
+  save(); renderLib();
+  // 聚焦到新增那一行的名称框
+  setTimeout(()=>{
+    const rows = document.querySelectorAll('#libBody .librow input');
+    const el = rows[(S.lib.length-1)*2];
+    if(el){ el.focus(); el.select(); }
+  }, 30);
+}
+function delLib(i){
+  const e = S.lib[i];
+  S.lib.splice(i,1);
+  // 同时从各天已选动作里移除
+  Object.values(S.days).forEach(d=>{ if(Array.isArray(d.ex)) d.ex = d.ex.filter(x=>x.id!==e.id); });
+  save(); renderTrain();
+}
+function syncExName(i){
+  const e = S.lib[i]; if(!e) return;
+  Object.values(S.days).forEach(d=>{ if(Array.isArray(d.ex)) d.ex.forEach(x=>{ if(x.id===e.id) x.name=e.name; }); });
+  save();
+}
+function addEx(i){
+  const e = S.lib[i]; if(!e) return;
+  const d = D();
+  if(d.ex.some(x=>x.id===e.id)){ toast('已在今日动作里'); return; }
+  d.ex.push({id:e.id, name:e.name, sets:+e.sets||4});
+  save(); renderTrain(); renderStrip();
+  toast(`✓ 已加入 ${e.name} ${e.sets}×8`);
+}
+function delEx(ei){
+  const d = D();
+  const [rm] = d.ex.splice(ei,1);
+  // 移除该动作在本次训练里的组记录
+  if(rm && d.workout){ Object.keys(d.workout).forEach(k=>{ if(d.workout[k] && d.workout[k].name===rm.name) delete d.workout[k]; }); }
+  save(); renderTrain();
+}
+
+function renderSession(){
+  const d = D();
+  const w = d.workout = d.workout||{};
+  return `<div class="sess">
+    <div class="st" style="margin:16px 0 8px"><h2 style="font-size:14px">🔴 训练中</h2><span class="sub">每记一组自动休息 ${REST_SEC}s</span></div>
+    ${d.ex.map((e,ei)=>{
+      const planned = +e.sets||4;
+      let blk = w[ei];
+      if(Array.isArray(blk)) blk = w[ei] = {name:e.name, sets:blk};
+      if(!blk || !blk.sets || blk.name!==e.name) blk = w[ei] = {name:e.name, sets:Array.from({length:planned},()=>({w:'',r:'8',done:false}))};
+      const arr = blk.sets;
+      while(arr.length<planned) arr.push({w:'',r:'8',done:false});
+      const doneN = arr.filter(x=>x.done).length;
+      const prev = prevPerformance(e.name);
+      return `<div class="exblk">
+        <h4>${esc(e.name)}<span>${doneN}/${planned} 组${prev?' · 上次 '+esc(prev):''}</span></h4>
+        ${arr.map((x,si)=>`<div class="setrow ${x.done?'done':''}">
+          <span class="idx">${si+1}</span>
+          <input type="number" inputmode="decimal" placeholder="重量" value="${x.w||''}" oninput="setVal(${ei},${si},'w',this.value)"><span class="unitlbl">kg</span>
+          <input type="number" inputmode="numeric" placeholder="8" value="${x.r||''}" oninput="setVal(${ei},${si},'r',this.value)"><span class="unitlbl">次</span>
+          <button class="done" onclick="completeSet(${ei},${si})">✓</button>
+        </div>`).join('')}
+      </div>`;
+    }).join('')}
+    <button class="ghostbtn" style="background:rgba(255,107,107,.14);color:#ff9b9b;border:1px solid rgba(255,107,107,.3)" onclick="endSession()">■ 结束训练</button>
+    <div style="height:8px"></div>
+  </div>`;
 }
 function prevPerformance(name){
-  const keys=Object.keys(S.days).sort();
+  const keys=Object.keys(S.days).filter(k=>k<viewDate).sort();
   for(let i=keys.length-1;i>=0;i--){
-    const d=S.days[keys[i]]; if(!d.workout)continue;
-    for(const arr of Object.values(d.workout)){
-      if(!arr||!arr.sets||arr.name!==name)continue;
-      const ds=arr.sets.filter(x=>x.done&&x.w);
+    const d=S.days[keys[i]];
+    if(!d||!d.workout) continue;
+    for(const b of Object.values(d.workout)){
+      if(!b||!b.sets||b.name!==name) continue;
+      const ds=b.sets.filter(x=>x.done&&x.w);
       if(ds.length) return `${ds[ds.length-1].w}kg × ${ds[ds.length-1].r||'?'}次`;
     }
   }
   return null;
 }
-function setVal(ei,si,k,v){ const blk=(D().workout[splitOf(viewDate)]||{})[ei]; if(blk&&blk.sets&&blk.sets[si])blk.sets[si][k]=v; save(); }
+function setVal(ei,si,k,v){ const blk=(D().workout||{})[ei]; if(blk&&blk.sets&&blk.sets[si]) blk.sets[si][k]=v; save(); }
 function completeSet(ei,si){
-  const sp=splitOf(viewDate), blk=D().workout[sp][ei];
+  const blk=(D().workout||{})[ei]; if(!blk||!blk.sets[si]) return;
   const x=blk.sets[si];
   x.done=!x.done;
+  if(x.done && !x.r) x.r='8';
   if(x.done) startRest();
   save(); renderTrain();
 }
 function startRest(){
   restLeft=REST_SEC; const chip=document.getElementById('restChip');
-  chip.classList.add('show');
-  clearInterval(restTimer);
-  const paint=()=>chip.innerHTML=`⏱ 休息 <b>${restLeft}s</b> <span class="adj" onclick="restLeft+=30">+30s</span><span class="adj" onclick="restLeft=Math.max(0,restLeft-15);">-15s</span><span class="adj" onclick="clearInterval(restTimer);chipHide()">跳过</span>`;
+  chip.classList.add('show'); clearInterval(restTimer);
+  const paint=()=>chip.innerHTML=`⏱ <b>${restLeft}s</b> <span class="adj" onclick="restLeft+=30">+30s</span><span class="adj" onclick="restLeft=Math.max(0,restLeft-15)">-15s</span><span class="adj" onclick="clearInterval(restTimer);chipHide()">跳过</span>`;
   paint();
   restTimer=setInterval(()=>{ restLeft--; if(restLeft<=0){ clearInterval(restTimer); chipHide(); toast('⏱ 休息结束，下一组'); } else paint(); },1000);
 }
-function chipHide(){ document.getElementById('restChip').classList.remove('show'); }
+function chipHide(){ const c=document.getElementById('restChip'); if(c) c.classList.remove('show'); }
 function endSession(){
-  const sp=splitOf(viewDate), w=D().workout[sp]||{};
-  let sets=0, vol=0;
-  Object.values(w).forEach(arr=>((arr&&arr.sets)||[]).forEach(x=>{ if(x.done){sets++;vol+=(+x.w||0)*(+x.r||0);} }));
-  clearInterval(restTimer); chipHide();
-  sessionOn=false; renderTrain(); closeAll();
-  toast(`训练完成 ✓ ${sets}组 · 容量${Math.round(vol)}kg`);
+  const d=D(); let sets=0, vol=0;
+  Object.values(d.workout||{}).forEach(b=>((b&&b.sets)||[]).forEach(x=>{ if(x.done){sets++; vol+=(+x.w||0)*(+x.r||0);} }));
+  clearInterval(restTimer); chipHide(); sessionOn=false;
+  save(); renderTrain(); closeAll();
+  toast(`训练完成 ✓ ${sets}组 · 容量 ${Math.round(vol)}kg`);
 }
-function startSession(){ sessionOn=true; renderTrain(); window.scrollTo(0,document.body.scrollHeight*0.3); }
-
-function renderSched(){
-  const names=['周一','周二','周三','周四','周五','周六','周日'];
-  document.getElementById('schedBody').innerHTML = names.map((n,i)=>
-    `<div class="schedrow"><span>${n}</span><select onchange="S.schedule[${i}]=this.value;save();renderAll()">
-      <option value="A" ${S.schedule[i]==='A'?'selected':''}>🏋️ 练A（上肢）</option>
-      <option value="B" ${S.schedule[i]==='B'?'selected':''}>🏋️ 练B（下肢）</option>
-      <option value="rest" ${S.schedule[i]==='rest'?'selected':''}>🛌 休息</option></select></div>`).join('');
-}
-function renderTmpl(k){
-  document.getElementById('tmpl'+k).innerHTML = (S.tmpl[k]||[]).map((e,i)=>
-    `<div class="templrow"><input class="name" value="${esc(e.name)}" onchange="S.tmpl['${k}'][${i}].name=this.value;save()"><input class="sets" value="${esc(e.sets)}" onchange="S.tmpl['${k}'][${i}].sets=this.value;save()"><span class="del" onclick="S.tmpl['${k}'].splice(${i},1);save();renderTrain()">✕</span></div>`).join('')
-    + `<button class="minibtn" onclick="S.tmpl['${k}'].push({name:'新动作',sets:'3×10'});save();renderTrain()">＋ 添加动作</button>`;
-}
+function startSession(){ sessionOn=true; renderTrain(); window.scrollTo({top:0,behavior:'smooth'}); }
 
 // ============ init ============
 function renderAll(){
